@@ -1,0 +1,452 @@
+<title>2027 전보내신서 작성 안내</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 레이아웃: 공문 같은 단정한 한 단 + 위쪽 고정 목차 칩, 마감일만 호박색으로 강조 */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#18212d; --muted:#5a6676; --line:#dbe1e8;
+  --accent:#1f5fa8; --accent-soft:#e6eef8; --due:#b45309; --due-soft:#fff4e0; --warn:#b42318; --warn-soft:#fdecea; --ok:#1d7a4e;
+  --f-head:"IBM Plex Sans KR","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161d; --surface:#18202a; --ink:#e6ebf1; --muted:#9aa6b4; --line:#2b3644;
+  --accent:#7fb0ea; --accent-soft:#1c2b3d; --due:#f0b45a; --due-soft:#3a2a12; --warn:#f2877d; --warn-soft:#3a1d1b; --ok:#6fcf9b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11161d; --surface:#18202a; --ink:#e6ebf1; --muted:#9aa6b4; --line:#2b3644;
+  --accent:#7fb0ea; --accent-soft:#1c2b3d; --due:#f0b45a; --due-soft:#3a2a12; --warn:#f2877d; --warn-soft:#3a1d1b; --ok:#6fcf9b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-block:40px 24px}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--muted)}
+h1{font-family:var(--f-head);font-size:clamp(26px,5vw,38px);line-height:1.3;margin:6px 0 10px;text-wrap:balance}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+.keydates{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:22px}
+.kd{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.kd b{font-family:var(--f-head);font-size:20px;font-variant-numeric:tabular-nums}
+.kd span{font-size:14px;color:var(--muted)}
+.kd.zoom{border-color:var(--due);background:var(--due-soft)}
+.kd.zoom b,.kd.zoom .tag{color:var(--due)}
+.tag{font-size:12px;font-weight:700;letter-spacing:.04em}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+nav.toc a{flex:none;font-size:14px;color:var(--ink);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+main{padding-block:8px 64px}
+section{padding-top:36px;scroll-margin-top:64px}
+h2{font-family:var(--f-head);font-size:24px;line-height:1.35;margin:0 0 14px;text-wrap:balance;display:flex;gap:10px;align-items:baseline}
+h2 .no{color:var(--accent);font-variant-numeric:tabular-nums}
+h3{font-family:var(--f-head);font-size:18px;margin:26px 0 8px}
+p{margin:0 0 10px;max-width:68ch}
+ul{margin:0 0 12px;padding-left:1.2em}
+li{margin:3px 0}
+.who{font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:1px 8px;margin-left:auto;white-space:nowrap}
+.box{border-radius:10px;padding:14px 16px;margin:14px 0}
+.box.warn{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
+.box.warn strong{color:var(--warn)}
+.box.note{background:var(--accent-soft)}
+.box.due{background:var(--due-soft);border:1px solid var(--due)}
+.box.due strong{color:var(--due)}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+.tbl{overflow-x:auto;margin:10px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{background:var(--accent-soft);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.d{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:500}
+tr.hl td{background:var(--due-soft)}
+tr.hl td.d{color:var(--due);font-weight:700}
+.new{font-size:11px;font-weight:700;color:var(--ok);border:1px solid var(--ok);border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+.steps{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:18px;counter-reset:s}
+.steps>li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;margin:0}
+.steps>li::before{content:counter(s);font-family:var(--f-head);font-weight:700;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font-size:15px;margin-top:2px}
+.steps .body{min-width:0}
+.steps .body>p:first-child{margin-bottom:6px}
+figure{margin:6px 0 0}
+figure button{all:unset;cursor:zoom-in;display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface);max-width:100%}
+figure button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:10px 0}
+.gal figure{margin:0}
+.check{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.check label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:4px;accent-color:var(--accent);flex:none}
+.check input:checked+span{color:var(--muted);text-decoration:line-through}
+.progress{font-size:14px;color:var(--muted);margin:6px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:12px 0}
+summary{cursor:pointer;font-weight:700;font-family:var(--f-head)}
+details[open] summary{margin-bottom:8px}
+kbd{font-family:var(--f-body);font-size:.92em;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 6px;background:var(--surface);white-space:nowrap}
+a{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-block:20px 40px;color:var(--muted);font-size:13px}
+dialog{border:none;padding:0;max-width:min(96vw,1500px);background:transparent}
+dialog::backdrop{background:rgba(10,14,20,.82)}
+dialog img{display:block;max-width:100%;max-height:86vh;border-radius:6px}
+dialog p{color:#fff;font-size:14px;margin:8px 0 0;text-align:center;max-width:none}
+dialog .x{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:14px;cursor:pointer}
+.zoombox{background:var(--due-soft);border:1.5px solid var(--due);border-radius:12px;padding:16px 18px;margin-bottom:26px;display:flex;flex-direction:column;gap:10px}
+.zb-head{display:flex;flex-direction:column;gap:2px}
+.zb-head .tag{color:var(--due)}
+.zb-head strong{font-family:var(--f-head);font-size:clamp(17px,3.4vw,20px);line-height:1.4;text-wrap:balance}
+.zb-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.zb-steps li{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0}
+.zb-steps li>span:first-child{min-width:7.5em;font-weight:500}
+.zb-val{font-family:var(--f-head);font-size:20px;font-weight:700;letter-spacing:.04em;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2px 10px;font-variant-numeric:tabular-nums;user-select:all}
+.zb-url{font-size:13px;color:var(--muted);user-select:all}
+.zb-note{font-size:14px;margin:0;color:var(--muted)}
+.btn{font:inherit;font-size:14px;font-weight:700;border-radius:8px;padding:6px 14px;cursor:pointer;text-decoration:none;border:1px solid var(--accent);background:var(--surface);color:var(--accent);line-height:1.4}
+.btn.primary{background:var(--accent);color:var(--surface)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.done{border-color:var(--ok);color:var(--ok)}
+@media (max-width:560px){.zb-steps li>span:first-child{min-width:100%}}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.qa-log{display:flex;flex-direction:column;gap:8px;max-height:460px;overflow-y:auto}
+.msg{border-radius:10px;padding:9px 12px;max-width:92%;white-space:pre-wrap;font-size:15px;line-height:1.65}
+.msg.me{align-self:flex-end;background:var(--accent);color:var(--surface)}
+.msg.bot{align-self:flex-start;background:var(--accent-soft)}
+.msg.err{align-self:flex-start;background:var(--warn-soft);color:var(--warn)}
+.qa-sugg{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer}
+.chip:hover,.chip:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+.qa-form{display:flex;gap:8px;align-items:stretch}
+.qa-form textarea{flex:1;min-width:0;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);color:var(--ink);resize:vertical}
+.qa-form textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.qa-foot{font-size:12px;color:var(--muted);margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:6;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media (max-width:560px){.steps>li{grid-template-columns:28px 1fr;gap:8px}.steps>li::before{width:26px;height:26px;font-size:13px}h2{flex-wrap:wrap}.who{margin-left:0}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="zoombox" id="zoom">
+      <div class="zb-head"><span class="tag">전보 대상자 중 희망자 · 비대면</span><strong>12/2(수) 15:30~17:30 동부교육지원청 NEIS 전보내신서 작성 줌 연수</strong></div>
+      <ol class="zb-steps">
+        <li><span>먼저 <strong>참가 신청</strong></span><a class="btn primary" href="https://2zt.kr/6158" target="_blank" rel="noopener">참가 신청하기</a><span class="zb-url">https://2zt.kr/6158</span></li>
+        <li><span>줌 회의 아이디</span><code class="zb-val" id="zid">510 740 1978</code><button class="btn copy" type="button" data-copy="5107401978" data-label="아이디">복사</button></li>
+        <li><span>비밀번호</span><code class="zb-val" id="zpw">1234</code><button class="btn copy" type="button" data-copy="1234" data-label="비밀번호">복사</button></li>
+      </ol>
+      <p class="zb-note">연수 시작 10분 전(15:20)까지 입장해 주세요. 내신서를 쓰시는 분은 꼭 들어 주세요.</p>
+    </div>
+    <div class="eyebrow">구월중학교 교무기획부 · 2027. 3. 1.자 정기전보</div>
+    <h1>전보내신서 작성 안내</h1>
+    <p class="lead">만기가 아니어도 해당될 수 있습니다. 모든 선생님께서 2번 "나는 누구에 해당하나"까지는 꼭 읽어 주세요. 나이스 화면은 실제 화면을 찍은 예시이며 개인정보는 가렸습니다.</p>
+    <div class="keydates">
+      <div class="kd zoom"><span class="tag">꼭 들어 주세요</span><b>12/2(수)</b><span>15:30~17:30 동부교육지원청 내신서 작성 줌 연수 · <strong>참가 신청 필요</strong></span></div>
+      <div class="kd"><span class="tag">교내 마감</span><b>12/11(금)</b><span>나이스 [제출] → 출력물 서명 → 교감 선생님께</span></div>
+      <div class="kd"><span class="tag">나이스 마감</span><b>12/15(화) 17:00</b><span>관내·관외 모두</span></div>
+      <div class="kd"><span class="tag">발표(예정)</span><b>2027. 2. 3.</b><span>정기전보 발표</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <div class="wrap">
+    <a href="#schedule">일정</a><a href="#who">해당 여부</a><a href="#scope">관내·관외</a><a href="#choose">희망교</a><a href="#neis">나이스 작성</a><a href="#work">근무경력</a><a href="#edu">교육활동</a><a href="#bonus">가산점</a><a href="#outside">관외·전과</a><a href="#special">특례·상피제</a><a href="#check">체크리스트</a><a href="#qa">질문하기</a><a href="#ask">문의</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="schedule">
+  <h2><span class="no">1</span>일정</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>날짜</th><th>누가</th><th>할 일</th></tr></thead>
+    <tbody>
+      <tr><td class="d">~11/30(월)</td><td>교사</td><td>나이스 [교원인사]-[인사기록]에서 본인 경력·담임·보직·호봉·자격 확인</td></tr>
+      <tr><td class="d">12/1(화)~</td><td>교사</td><td>나이스 전보내신서 작성 시작(관내는 11/24부터 열려 있음)</td></tr>
+      <tr class="hl"><td class="d">12/2(수) 15:30~17:30</td><td>내신 예정자(희망자)</td><td><strong>동부교육지원청 전보내신서 작성 줌 연수</strong> – 나이스 입력을 직접 보여 줍니다. <strong>참가 신청</strong> 후 10분 전 입장(아래 접속 정보)</td></tr>
+      <tr class="hl"><td class="d">12/11(금)</td><td>교사</td><td><strong>교내 제출 마감</strong> – 나이스 [제출] → 출력물에 서명 → 교감 선생님께</td></tr>
+      <tr><td class="d">~12/14(월)</td><td>교감</td><td>2027. 1. 1.자 승급자 호봉 다시 반영</td></tr>
+      <tr class="hl"><td class="d">12/15(화) 17:00</td><td>학교</td><td><strong>나이스 마감</strong>(관내·관외 모두). 16시부터 지원청이 미제출 학교에 전화</td></tr>
+      <tr><td class="d">12/18(금) 이후</td><td>교감</td><td>지원청 확인이 끝나고 장학사 연락이 오면 출력(먼저 출력하면 다시 해야 할 수 있음)</td></tr>
+      <tr><td class="d">12/21(월) 17:00</td><td>학교</td><td>동부교육지원청에 PDF 스캔 제출(내신서·내신자 명부·평정점 확인부·증빙)</td></tr>
+      <tr><td class="d">2027. 1. 15.(예정)</td><td>–</td><td>중·고 배정 발표 → 상피제 해당자 확인</td></tr>
+      <tr><td class="d">2027. 2. 3.(예정)</td><td>–</td><td>정기전보 발표</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--muted)">12/2 줌 연수 신청·접속 정보는 <a href="#zoom">맨 위</a>에 있습니다.</p>
+</section>
+
+<section id="who">
+  <h2><span class="no">2</span>나는 누구에 해당하나<span class="who">전 교사</span></h2>
+  <div class="tbl"><table>
+    <thead><tr><th>유형</th><th>나이스 내신서</th><th>더 낼 것 · 주의</th></tr></thead>
+    <tbody>
+      <tr><td><strong>현임교 만기자</strong></td><td><strong>관내 필수</strong>(원하면 관외도)</td><td>휴직·파견 기간을 빼고 <strong>4년 11개월 15일 이상</strong>이면 만기로 봄<span class="new">동부</span></td></tr>
+      <tr><td>만기 간주<br>(정원감축·교과조절·별도정원)</td><td>관내 필수</td><td>만기자처럼 처리</td></tr>
+      <tr><td>희망 전보<br>(현임교 2년 이상)</td><td>관내 또는 관외</td><td><strong>관내 희망내신을 쓰면 반드시 옮깁니다.</strong> 희망교에 못 가면 남는 것이 아니라 임의배정. 관외만 쓰면 못 가도 남음<span class="new">동부</span></td></tr>
+      <tr><td>신설학교 지원<br>(1년 차 이상)</td><td>관내: <strong>송빛중학교</strong> + 비고 '신설학교 지원'</td><td>2년 미만도 가능. 못 가면 현임교에 남음<span class="new">동부</span></td></tr>
+      <tr><td><strong>신설 고등학교 지원</strong><br>(현임교 1년 차 이상)</td><td>관외(중→고)</td><td><strong>현임교 1년 차 중학교 교사도 신설 고등학교로 전보내신서를 쓸 수 있습니다.</strong> 단, 신설학교 설립사무 우선전보는 불가<span class="new">11/26 동부 정정</span></td></tr>
+      <tr><td>전과만 희망</td><td><strong>관외</strong>(희망교는 비움)</td><td>서식8 엑셀에 희망교. 안 내면 임의 배정</td></tr>
+      <tr><td>중→고, 다른 지원청</td><td>관외(현임교 2년 이상, 만기자는 선택)</td><td>학교는 고르지 않음. 신설 고등학교는 1년 차도 가능(바로 위 줄)</td></tr>
+      <tr><td>전보유예 신청</td><td><strong>반드시 작성</strong>(전보특례란)</td><td>서식2·3·14 + 증빙. 승인이 안 되면 그대로 전보</td></tr>
+      <tr><td>우선전보 대상</td><td><strong>관내</strong> + 희망교에 우선전보 학교</td><td>서식4·5·15(요청교 작성)</td></tr>
+      <tr><td>초빙 대상</td><td>관내 + 아무 학교 지정 + 비고 '초빙'</td><td>현임교는 희망교로 고를 수 없음</td></tr>
+      <tr><td>3/1자 복직(휴직·별도정원)</td><td>작성(교감 대리 가능)</td><td>3/1자에 반드시 복직해야 함</td></tr>
+      <tr><td>3/2 이후 별도정원 복직</td><td>작성 안 함</td><td>서식9 엑셀</td></tr>
+      <tr><td>휴직·파견 중인 만기자</td><td>교감 <strong>대리 작성</strong></td><td>교감이 출력한 내신서에 본인 도장</td></tr>
+      <tr><td>상피제 해당</td><td>작성</td><td>서식10(아래 9번)</td></tr>
+      <tr><td>해당 없음</td><td>작성 안 함</td><td>상피제 조사(자녀 학교)에는 회신</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box note"><p><strong>신청했다고 확정되는 것은 아닙니다.</strong> 초빙·우선전보·유예·전과·신설학교 지원은 모두 교육청 승인과 정원·순위에 따라 안 될 수 있습니다. 그래서 해당자도 내신서는 꼭 써 둡니다.</p></div>
+</section>
+
+<section id="scope">
+  <h2><span class="no">3</span>관내와 관외, 둘 다 쓸 수 있나<span class="who">내신자</span></h2>
+  <ul>
+    <li><strong>관내전보</strong>: 동부교육지원청 안 중학교끼리. 구월중 만기자는 대부분 여기에 해당합니다.</li>
+    <li><strong>관외전보</strong>: 중→고, 다른 지원청 중학교(청간), 기타지역(섬·강화), 전과 → 시교육청이 처리합니다.</li>
+    <li><strong>둘 다 쓸 수 있습니다.</strong> 만기자는 관내가 기본이고 원하면 관외를 더합니다. 둘 다 쓰면 <strong>관외를 먼저</strong> 처리하고, 관외로 안 된 사람만 관내로 처리합니다.</li>
+  </ul>
+  <div class="box warn"><p><strong>기타지역(섬) 안내</strong> – 지원자가 모자라면 중·고·관내·관외 전체 전보 서열에서 점수가 낮은 순으로 발령합니다. 이때는 초빙·우선전보도 예외가 아닙니다. 올해부터 부전공(전과) 내신자도 섬 지역에 갈 수 있습니다.</p></div>
+</section>
+
+<section id="choose">
+  <h2><span class="no">4</span>관내 희망교 쓰는 법<span class="who">내신자</span></h2>
+  <ul>
+    <li>관내는 <strong>1군·2군·3군·공동군</strong> 네 개입니다. <strong>한 군 안에서 3개 학교까지</strong> 쓸 수 있고, 1개만 써도 됩니다.</li>
+    <li><strong>군을 섞을 수 있는 것은 공동군뿐입니다.</strong> 1군을 고르면 [찾기]에 1군 학교만 나옵니다. 다른 군 학교를 섞어 넣으면 입력은 되지만 배정 때 지워지고, 그 순위는 앞으로 당겨지지 않고 빈칸이 됩니다.</li>
+    <li>공동군: 일반 교과는 <strong>함박중학교</strong> 1곳(상담·특수는 Wee센터까지). 신설교: <strong>송빛중학교</strong>.</li>
+    <li><strong>임의배정</strong>은 모든 교사의 3순위까지 배정을 끝낸 뒤 남은 자리에 거리를 감안해 배정합니다. 1순위가 안 되면 바로 임의배정되는 것이 아닙니다.</li>
+    <li>참고사항(비고)에는 연수 책자 61쪽 항목을 쓰고, 통근 사정(집이 멀다, 대중교통이 없다 등)도 적으면 참고합니다.</li>
+  </ul>
+  <div class="gal">
+    <figure><button data-cap="희망교선택 탭 – [등록]으로 희망근무지 등록 창을 엽니다"><img src="img/m15.jpg" alt="희망교선택 탭 화면" loading="lazy"></button><figcaption>희망교선택 탭에서 [등록]</figcaption></figure>
+    <figure><button data-cap="희망근무지 등록 창 – 희망구역을 고르고 [찾기]"><img src="img/m16.jpg" alt="희망근무지 등록 창" loading="lazy"></button><figcaption>희망근무지 등록 창</figcaption></figure>
+    <figure><button data-cap="희망구역 목록 – 1군·2군·3군·공동군"><img src="img/m17.jpg" alt="희망구역 목록" loading="lazy"></button><figcaption>희망구역: 1군·2군·3군·공동군</figcaption></figure>
+    <figure><button data-cap="[찾기] – 고른 군의 학교만 나옵니다(1군 예시)"><img src="img/m18.jpg" alt="1군 학교 목록" loading="lazy"></button><figcaption>[찾기]: 고른 군의 학교만 나옴(1군 예시)</figcaption></figure>
+  </div>
+</section>
+
+<section id="neis">
+  <h2><span class="no">5</span>나이스 작성 순서<span class="who">내신자</span></h2>
+  <p>경로: 나이스 왼쪽 <strong>기본 메뉴 → 인사 → 전보 → (중등)전보개요선택</strong></p>
+  <ol class="steps">
+    <li><div class="body"><p><strong>전보개요를 고르고 [전보내신서 작성]</strong> – 관내(동부 관내 중등)와 관외(중등 정기전보) 중 쓸 것을 고릅니다. 둘 다 쓰면 각각 따로 작성합니다.</p>
+      <figure><button data-cap="전보개요선택 – 관내 줄을 고르고 오른쪽 위 [전보내신서 작성]"><img src="img/m01.jpg" alt="전보개요선택 화면" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p><strong>처음이면 [전보 내신서 등록]</strong> – "조회된 전보내신서가 없습니다" 창이 뜨면 등록을 누르고 확인합니다.</p>
+      <figure><button data-cap="처음 들어가면 뜨는 등록 안내"><img src="img/m02.jpg" alt="전보 내신서 등록 안내 창" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p><strong>전보사유를 고르고 [저장]</strong> – 현임교만기·정원감축·교과조절감·희망·별도정원 중 하나. 저장해야 내신서가 만들어집니다.</p>
+      <div class="gal">
+        <figure><button data-cap="추가기본사항 창 – 전보사유와 참고사항(비고)"><img src="img/m03.jpg" alt="추가기본사항 창" loading="lazy"></button></figure>
+        <figure><button data-cap="전보사유 목록"><img src="img/m04.jpg" alt="전보사유 목록" loading="lazy"></button></figure>
+      </div></div></li>
+    <li><div class="body"><p><strong>전보기본사항 확인</strong> – [인사기본사항 가져오기]로 최신 인사기록을 반영하고, [전화번호 변경]으로 개인·학교 전화번호를 꼭 확인합니다(기타지역 발령 등 연락용).</p>
+      <figure><button data-cap="전보기본사항(개인정보는 가림)"><img src="img/m05.jpg" alt="전보기본사항 탭" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p><strong>탭을 왼쪽부터 차례로</strong> – 추가기본사항 → 근무경력환산점(6번) → 교육활동경력환산점(7번) → 가산점(8번) → 교육총경력점 → (관외만) 과목전과 → 전보특례 → 친인척교원 → 희망교선택(4번).</p>
+      <div class="gal">
+        <figure><button data-cap="교육총경력점 – [등록]으로 지금 호봉 한 줄"><img src="img/m11.jpg" alt="교육총경력점 탭" loading="lazy"></button><figcaption>교육총경력점: 지금 호봉 한 줄</figcaption></figure>
+        <figure><button data-cap="과목전과 – 관외 내신서에서만 씁니다"><img src="img/m12.jpg" alt="과목전과 탭" loading="lazy"></button><figcaption>과목전과(관외)</figcaption></figure>
+        <figure><button data-cap="전보특례 – 초빙·우선전보·유예 해당자"><img src="img/m13.jpg" alt="전보특례 탭" loading="lazy"></button><figcaption>전보특례(해당자)</figcaption></figure>
+        <figure><button data-cap="친인척교원 – 임의배정 때 참고만 합니다"><img src="img/m14.jpg" alt="친인척교원 탭" loading="lazy"></button><figcaption>친인척교원(해당자)</figcaption></figure>
+      </div></div></li>
+    <li><div class="body"><p><strong>[내신서출력]으로 확인 → [제출]</strong> – 출력물에 서명해 교감 선생님께 드립니다. 제출한 뒤에는 본인이 고칠 수 없으니, 고칠 것이 생기면 교감 선생님께 반려를 요청합니다.</p></div></li>
+  </ol>
+  <div class="box note"><p><strong>등록 창 공통 요령</strong> – 근무경력·교육활동·가산점의 [등록] 창에서는 <strong>체크한 줄만 저장</strong>됩니다. 아무것도 체크하지 않고 [저장]을 누르면 "선택 후 진행해주세요"가 뜹니다. [행삭제]한 줄은 분홍색으로 남는데, 그 줄이 체크된 채 저장하면 "항목은 필수" 오류가 납니다. 저장하기 전에 <strong>새로 입력한 줄만 체크</strong>하세요.</p></div>
+</section>
+
+<section id="work">
+  <h2><span class="no">6</span>근무경력환산점 – 기존 줄을 지우고 새로 입력<span class="who">내신자</span></h2>
+  <div class="box warn"><p><strong>인사기록에서 가져온 줄은 쓰지 마세요.</strong> 보직·교육청 전보 기간이 쪼개지거나 겹쳐 들어오고, 휴직 중인데도 점수가 붙는 경우가 있습니다. 가져온 줄은 지우고 <strong>현임교 기간을 한 줄로 직접</strong> 입력합니다.</p></div>
+  <ul>
+    <li>만기자는 <strong>상한 6점</strong>입니다(5년을 넘게 근무해도 6점). 7점 넘게 나오면 다시 작성하면 원래대로 돌아옵니다.</li>
+    <li>휴직·파견 기간은 빼고, 시간선택제 근무 기간은 절반만 인정합니다.</li>
+  </ul>
+  <ol class="steps">
+    <li><div class="body"><p>근무경력환산점 탭에서 <kbd>등록</kbd> – 위쪽 표가 인사기록입니다.</p><figure><button data-cap="근무지경력점 등록 창(인사기록 경력은 가림)"><img src="img/w1.jpg" alt="근무지경력점 등록 창" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p>인사기록에서 <kbd>추가</kbd>로 가져오면 이렇게 기간이 쪼개져 들어옵니다. 이 줄들은 쓰지 않습니다.</p><figure><button data-cap="인사기록에서 가져온 줄 – 쓰지 않습니다"><img src="img/w2.jpg" alt="가져온 줄" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p>가져온 줄을 모두 체크하고 <kbd>행삭제</kbd> → 확인</p>
+      <div class="gal"><figure><button data-cap="가져온 줄 모두 체크"><img src="img/w3.jpg" alt="모두 체크" loading="lazy"></button></figure><figure><button data-cap="[행삭제] → 확인"><img src="img/w4.jpg" alt="행삭제 확인" loading="lazy"></button></figure></div></div></li>
+    <li><div class="body"><p>근무지 경력 구분에서 <strong>5년근무지</strong>를 고르고 <kbd>행추가</kbd></p>
+      <div class="gal"><figure><button data-cap="근무지 경력 구분 – 5년근무지·3년근무지·정원감축"><img src="img/w5.jpg" alt="구분 목록" loading="lazy"></button></figure><figure><button data-cap="[행추가]로 만든 빈 줄"><img src="img/w6.jpg" alt="빈 줄" loading="lazy"></button></figure></div></div></li>
+    <li><div class="body"><p>기관명 <kbd>찾기</kbd>로 현임교(구월중학교)를 고르고, 전보 근무 시작·종료 임용일을 넣으면 년수가 계산됩니다.</p>
+      <div class="gal"><figure><button data-cap="[찾기] – 조직명에 학교 이름을 넣고 조회"><img src="img/w7.jpg" alt="조직코드찾기" loading="lazy"></button></figure><figure><button data-cap="현임교 기간을 넣으면 년수 계산(예시: 2년)"><img src="img/w8.jpg" alt="기간 입력" loading="lazy"></button></figure></div></div></li>
+    <li><div class="body"><p>새 줄을 체크하고 <kbd>저장</kbd> → 목록에서 <strong>합계와 상한점 적용 점수</strong>를 확인합니다.</p><figure><button data-cap="저장 후 목록 – 예시는 2년 근무라 2.4점(만기자는 6점)"><img src="img/w9.jpg" alt="저장 후 목록" loading="lazy"></button><figcaption>예시는 2년 근무라 2.4점입니다. 5년 만기자는 6점이 나와야 합니다.</figcaption></figure></div></li>
+  </ol>
+</section>
+
+<section id="edu">
+  <h2><span class="no">7</span>교육활동경력환산점 – 기존 줄을 지우고 해마다 한 줄<span class="who">내신자</span></h2>
+  <ul>
+    <li><strong>해마다 한 줄씩</strong> 넣습니다. 담임 3년이면 3줄이고, 3년을 한 줄로 몰아 넣지 않습니다.</li>
+    <li>'5년만기교' 3줄이 <strong>3.6점 만점</strong>입니다. 보직교사 경력은 '5년만기교'가 아니라 <strong>'추가평정'으로 1년 더</strong>(1.2점) 넣어 최대 4.8점. 5년만기교 3줄을 다 채운 뒤에 추가평정을 넣어야 4.8점이 됩니다.</li>
+    <li>내용 예: <code>1학년 1반 담임</code>, <code>교무기획부장</code></li>
+    <li>정원감축·교과조절로 5년을 못 채우고 나가면 항목에서 '(정원감축)'을 골라 모자란 만큼 추가 점수를 받습니다.</li>
+  </ul>
+  <ol class="steps">
+    <li><div class="body"><p>교육활동경력환산점 탭 <kbd>등록</kbd> → 구분에서 <strong>5년만기교</strong>(보직은 나중에 추가평정)</p><figure><button data-cap="교육활동경력 구분 – 5년만기교·3년만기교·추가평정"><img src="img/e1.jpg" alt="구분 목록" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p>인사기록에서 줄이 자동으로 불러와집니다. 이 줄들은 쓰지 않습니다.</p><figure><button data-cap="자동으로 불러온 줄(다른 학교 경력은 가림)"><img src="img/e2.jpg" alt="불러온 줄" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p>맨 위 체크로 모두 고르고 <kbd>행삭제</kbd> → 확인. 지운 줄은 분홍색으로 남습니다.</p><figure><button data-cap="모두 체크 → [행삭제]"><img src="img/e3.jpg" alt="모두 체크" loading="lazy"></button></figure></div></li>
+    <li><div class="body"><p><kbd>행추가</kbd>로 빈 줄을 만들고 항목(학급담임교사 등)·내용·시작일자·종료일자를 넣습니다. 한 해에 한 줄입니다.</p>
+      <div class="gal"><figure><button data-cap="[행추가]로 만든 빈 줄(맨 아래)"><img src="img/e4.jpg" alt="빈 줄" loading="lazy"></button></figure><figure><button data-cap="해마다 한 줄씩 입력한 예시"><img src="img/e5.jpg" alt="입력한 줄" loading="lazy"></button></figure></div></div></li>
+    <li><div class="body"><p><strong>새로 넣은 줄만 체크</strong>하고 <kbd>저장</kbd> → 목록에서 합계를 확인합니다.</p>
+      <div class="gal"><figure><button data-cap="저장할 줄을 체크한 뒤 [저장]"><img src="img/e6.jpg" alt="저장할 줄 체크" loading="lazy"></button></figure><figure><button data-cap="저장 후 목록 – 1년에 1.2점"><img src="img/e7.jpg" alt="저장 후 목록" loading="lazy"></button></figure></div></div></li>
+  </ol>
+</section>
+
+<section id="bonus">
+  <h2><span class="no">8</span>가산점·증빙<span class="who">해당자</span></h2>
+  <div class="tbl"><table>
+    <thead><tr><th>항목</th><th>입력</th><th>증빙</th></tr></thead>
+    <tbody>
+      <tr><td>현임교에서 둘째 이상 출생 / 만 6세 미만 자녀 2명 이상</td><td>일자 없이 <strong>비고에 자녀 이름·생년월일</strong></td><td>주민등록등본</td></tr>
+      <tr><td>Wee센터·특수교육지원센터·중도중복 근무</td><td>근무기간 직접 입력(최대 3년)</td><td>–</td></tr>
+      <tr><td>표창(관내)</td><td>현임교에서 받은 <strong>동부 '교육활동 유공' 교육장 표창만</strong></td><td>–</td></tr>
+      <tr><td>적극행정 우수공무원 교육감 표창</td><td>표창 선택(관외는 이것만)</td><td>–</td></tr>
+      <tr><td>신설학교 개교 첫해 근무(만기자)</td><td>신설학교 개교첫해근무</td><td>–</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box warn"><ul>
+    <li><strong>스승의 날 표창, 다른 기관·다른 학교에서 받은 표창은 해당 없습니다.</strong></li>
+    <li><strong>가산점을 넣었으면 증빙을 꼭 내세요.</strong> 가장 많이 빠지는 부분입니다. 원본이 아니면 교감 원본대조필, 학교 도장.</li>
+  </ul></div>
+  <div class="gal">
+    <figure><button data-cap="가산점 등록 – 가산구분 목록"><img src="img/m19.jpg" alt="가산구분 목록" loading="lazy"></button><figcaption>가산구분 목록</figcaption></figure>
+    <figure><button data-cap="표창을 고른 뒤 [찾기]로 표창 선택"><img src="img/m20.jpg" alt="표창 등록" loading="lazy"></button><figcaption>표창: [찾기]로 선택</figcaption></figure>
+  </div>
+  <p>교육총경력점(호봉)은 지금 호봉으로 한 줄 넣습니다. <strong>2027. 1. 1.자 승급자</strong>는 급여 처리 뒤 교감 선생님이 다시 반영합니다(늦어도 12/14).</p>
+</section>
+
+<section id="outside">
+  <h2><span class="no">9</span>관외: 중→고 · 다른 지원청 · 기타지역 · 전과<span class="who">해당자</span></h2>
+  <ul>
+    <li>관외 희망은 <strong>최대 5개</strong>: 고등학교 1 + 다른 지원청 중학교 1 + 기타지역 3.</li>
+    <li><strong>중→고</strong>: 현임교 2년 이상(만기자는 선택). [고등학교] → 인천시교육청, 학교는 고르지 않고 비고에 <code>일반고</code> 또는 <code>특성화고</code>.</li>
+    <li><strong>신설 고등학교</strong>: 현임교 1년 차 중학교 교사도 신설 고등학교로 전보내신서를 쓸 수 있습니다. 단, 신설학교 설립사무 우선전보는 불가합니다<span class="new">11/26 동부 정정</span>.</li>
+    <li><strong>다른 지원청 중학교</strong>: 지원청 1곳만, 학교 선택 불가 → 그 지원청 희망자로 분류돼 임의배정.</li>
+    <li><strong>기타지역</strong>: 남부(섬)는 기타군에서 중학교 선택, 강화는 '강화 일반'(학교 선택 없음)이나 서도중학교 지정.</li>
+    <li><strong>전과</strong>는 관외 내신서에서만 합니다. [과목전과] → [행추가] → 희망 과목, 변경 희망 Y, 자격(복수·부전공 자격이 없으면 지금 담당 자격) → [저장]. <strong>서식8 엑셀을 안 내면 임의 배정</strong>됩니다.</li>
+    <li>전과만 희망하면 나이스 희망교는 비우고 서식8에 희망교를 씁니다(학교를 고르면 관내전보로 처리됨).</li>
+  </ul>
+</section>
+
+<section id="special">
+  <h2><span class="no">10</span>우선전보 · 초빙 · 유예 · 상피제<span class="who">해당자</span></h2>
+  <h3>우선전보</h3>
+  <ul>
+    <li><strong>관내전보에만</strong> 있습니다. 관내 내신서를 쓰고 <strong>희망교에 우선전보 학교를 꼭 선택</strong>하세요. 작년에 안 골라서 못 간 사례가 있습니다.</li>
+    <li>순위: 제7조 제2항(체육특기자·신설교·IB 학교) &gt; 제1항(세 자녀, 장애 정도가 심한 경우 등). 같은 항끼리는 전보 서열 점수가 높은 사람이 우선입니다.</li>
+    <li>증빙은 요청교가 내고 교육청이 승인합니다. 영양교사는 우선전보가 없습니다.</li>
+  </ul>
+  <h3>초빙</h3>
+  <ul><li>초빙 교사도 관내 내신서가 필수입니다. 현임교는 고를 수 없으니 아무 학교나 지정하고 비고에 '초빙'을 씁니다. 초빙이라고 무조건 가는 것은 아닙니다.</li></ul>
+  <h3>유예</h3>
+  <ul><li>교육청 승인이 나야 유예됩니다. 안 되면 전보해야 하므로 <strong>내신서를 반드시 작성</strong>합니다(전보특례란 + 서식2·3·14 + 증빙). 유예는 이번만 미루는 것이라 다음 해 다시 만기자로 처리됩니다.</li></ul>
+  <h3>상피제</h3>
+  <ul>
+    <li>대상: 전보내신자 중 2026학년도 <strong>초6·중1~3·고1~2 자녀</strong>가 있는 교사. 학교는 해당 없어도 서식10을 내므로 <strong>전원 회신</strong>해 주세요.</li>
+    <li>중학교 배정 발표(1월) 뒤 새로 해당되면 공문으로 다시 내신합니다. 그때 안 쓰면 희망 반영 없이 임의 전보됩니다.</li>
+  </ul>
+</section>
+
+<section id="check">
+  <h2><span class="no">11</span>제출 전 체크리스트<span class="who">내신자</span></h2>
+  <p class="progress" id="progress" aria-live="polite">0 / 10 확인</p>
+  <ul class="check" id="checklist">
+    <li><label><input type="checkbox" id="c1"><span>휴직·파견 기간을 빼고 4년 11개월 15일 이상인지 확인했다</span></label></li>
+    <li><label><input type="checkbox" id="c2"><span>관내 희망내신을 쓰면 반드시 옮긴다는 것을 알고 썼다</span></label></li>
+    <li><label><input type="checkbox" id="c3"><span>전보개요(관내/관외)를 맞게 골랐고, 전화번호를 확인했다</span></label></li>
+    <li><label><input type="checkbox" id="c4"><span>근무경력: 가져온 줄을 지우고 현임교 기간을 직접 입력했다(6점 이하)</span></label></li>
+    <li><label><input type="checkbox" id="c5"><span>교육활동: 해마다 한 줄, 보직은 추가평정으로 넣었다</span></label></li>
+    <li><label><input type="checkbox" id="c6"><span>등록 창에서 새로 넣은 줄만 체크하고 저장했다</span></label></li>
+    <li><label><input type="checkbox" id="c7"><span>희망교는 같은 군 안에서만 골랐다(섞기는 공동군만)</span></label></li>
+    <li><label><input type="checkbox" id="c8"><span>가산점·표창을 넣었으면 증빙을 준비했다</span></label></li>
+    <li><label><input type="checkbox" id="c9"><span>[내신서출력]으로 확인하고 [제출]까지 눌렀다</span></label></li>
+    <li><label><input type="checkbox" id="c10"><span>출력물에 서명해 12/11(금)까지 교감 선생님께 드렸다</span></label></li>
+  </ul>
+  <p style="font-size:13px;color:var(--muted)">체크 표시는 이 기기의 브라우저에만 저장됩니다.</p>
+</section>
+
+<details>
+  <summary>교감·교무기획부 확인 사항 (연수 교재 부록)</summary>
+  <ul>
+    <li><strong>근무성적 환산점</strong>: 교사 제출 뒤 교감이 [등록] → 2025 근평 기준 선택 → 반영. 빠뜨린 학교가 많습니다.</li>
+    <li><strong>TO감과 교과조절감</strong>: TO감은 후임 교과 없음, 교과조절감은 후임 교과를 반드시 입력.</li>
+    <li>만기자·만기 간주자가 있는데 희망 내신자로 채우지 않기(미발령 → 퇴직자 → 만기 간주자 → 희망 내신자 순).</li>
+    <li>대리 작성(휴직·별도정원): 교감이 출력 → 해당 교사 본인 도장.</li>
+    <li>[일정관리 및 마감관리]에서 [마감] 뒤 <strong>[제출]까지</strong>. 관외 내신자가 없어도 관외도 마감·제출.</li>
+    <li>출력은 12/18 장학사 연락 뒤. 내신서·내신자 명부·평정점 확인부를 세트로, 하나라도 고치면 셋 다 다시 출력. 모든 서류에 학교 도장, 사본은 원본대조필.</li>
+  </ul>
+</details>
+
+<section id="qa">
+  <h2><span class="no">12</span>질문하기<span class="who">AI 도우미</span></h2>
+  <p>이 안내 자료 내용을 바탕으로 답합니다. 자료에 없는 내용은 교무기획부나 교감 선생님께 여쭤 주세요. 이름·학번 같은 개인정보는 쓰지 마세요.</p>
+  <div class="qa">
+    <div class="qa-log" id="qaLog" aria-live="polite">
+      <div class="msg bot">예: "만기인데 관외도 같이 쓸 수 있나요?", "근무경력은 어떻게 입력하나요?", "12/2 연수는 어떻게 들어가요?"</div>
+    </div>
+    <div class="qa-sugg" id="qaSugg">
+      <button type="button" class="chip">12/2 줌 연수는 어떻게 들어가요?</button>
+      <button type="button" class="chip">관내 희망내신을 쓰면 꼭 옮기나요?</button>
+      <button type="button" class="chip">근무경력환산점은 어떻게 입력하나요?</button>
+      <button type="button" class="chip">1년 차인데 신설 고등학교에 지원할 수 있나요?</button>
+    </div>
+    <form class="qa-form" id="qaForm">
+      <label for="qaInput" class="sr">질문</label>
+      <textarea id="qaInput" rows="2" maxlength="500" placeholder="궁금한 점을 적어 주세요"></textarea>
+      <button type="submit" class="btn primary" id="qaSend">질문</button>
+    </form>
+    <p class="qa-foot">AI 답변은 틀릴 수 있습니다. 마감·점수처럼 중요한 내용은 위 본문과 공문으로 다시 확인해 주세요.</p>
+  </div>
+</section>
+
+<section id="ask">
+  <h2><span class="no">13</span>문의</h2>
+  <ul>
+    <li>작성 방법: 교무기획부 · 내신서 확인·반려·대리 작성: 교감 선생님</li>
+    <li>시교육청 나이스 작성 매뉴얼(수시 갱신): <a href="https://bit.ly/4gOHCIg" target="_blank" rel="noopener">bit.ly/4gOHCIg</a></li>
+    <li>시교육청 안내 영상: <a href="https://www.youtube.com/watch?v=sYu5DDFstsQ" target="_blank" rel="noopener">youtube.com/watch?v=sYu5DDFstsQ</a></li>
+  </ul>
+</section>
+
+</main>
+<footer><div class="wrap">근거: 시교육청 「2027. 3. 1.자 중등교사 전보내신서 및 정기 인사자료 제출」(2026. 11. 25.), 시교육청 나이스 전보내신서 작성 매뉴얼, 동부교육지원청 전보 연수(2026. 11. 25.). 화면은 2026. 11. 26. 나이스에서 찍은 예시입니다.</div></footer>
+
+<a class="btn primary fab" href="#qa">질문하기</a>
+<dialog id="lb" aria-label="화면 크게 보기"><button class="x" id="lbx" type="button">닫기</button><img id="lbimg" alt=""><p id="lbcap"></p></dialog>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=document.getElementById('lbimg'), cap=document.getElementById('lbcap');
+  document.querySelectorAll('figure button').forEach(function(b){
+    b.addEventListener('click',function(){var i=b.querySelector('img');im.src=i.src;im.alt=i.alt;cap.textContent=b.dataset.cap||'';if(lb.showModal)lb.showModal();});
+  });
+  document.getElementById('lbx').addEventListener('click',function(){lb.close();});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target===im)lb.close();});
+  document.querySelectorAll('.btn.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.dataset.copy, lab=b.dataset.label;
+      function ok(){b.textContent=lab+' 복사됨';b.classList.add('done');setTimeout(function(){b.textContent='복사';b.classList.remove('done');},1800);}
+      function fallback(){var c=b.previousElementSibling;var r=document.createRange();r.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='선택됨 · Ctrl+C';}
+      try{navigator.clipboard.writeText(v).then(ok,fallback);}catch(e){fallback();}
+    });
+  });
+  var QA_URL="https://script.google.com/macros/s/AKfycbwZSxqU2Ah80EyLNACcY2-tgMxmyW-237RgiPnSuN-IR8qRtiR_qrYjE8TeLjRbDV5J/exec";
+  var log=document.getElementById('qaLog'), form=document.getElementById('qaForm'), inp=document.getElementById('qaInput'), send=document.getElementById('qaSend'), hist=[];
+  function add(t,c){var d=document.createElement('div');d.className='msg '+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+  function ask(q){
+    q=(q||'').trim(); if(!q||send.disabled) return;
+    add(q,'me'); inp.value=''; send.disabled=true; var w=add('답변을 만드는 중입니다…','bot');
+    fetch(QA_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({q:q,history:hist.slice(-4)})})
+      .then(function(r){return r.json();})
+      .then(function(j){ if(j.ok){w.textContent=j.a;hist.push({q:q,a:j.a});} else {w.className='msg err';w.textContent=j.error||'답변을 받지 못했습니다.';} })
+      .catch(function(){w.className='msg err';w.textContent='서버에 연결하지 못했습니다. 잠시 뒤 다시 해 주세요.';})
+      .finally(function(){send.disabled=false;inp.focus();});
+  }
+  form.addEventListener('submit',function(e){e.preventDefault();ask(inp.value);});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();ask(inp.value);}});
+  document.querySelectorAll('#qaSugg .chip').forEach(function(c){c.addEventListener('click',function(){ask(c.textContent);});});
+  var boxes=[].slice.call(document.querySelectorAll('#checklist input')), pg=document.getElementById('progress'), KEY='jeonbo2027-check';
+  var saved={}; try{saved=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function upd(){var n=boxes.filter(function(x){return x.checked}).length;pg.textContent=n+' / '+boxes.length+' 확인'+(n===boxes.length?' – 모두 확인했습니다':'');}
+  boxes.forEach(function(x){x.checked=!!saved[x.id];x.addEventListener('change',function(){saved[x.id]=x.checked;try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}upd();});});
+  upd();
+})();
+</script>
